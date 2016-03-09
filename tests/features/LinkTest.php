@@ -9,9 +9,9 @@ class LinkTest extends TestCase
     public function testWeSeeAListOfLinks()
     {
         factory(App\Link::class)->create([
-            'title' => 'google.fr'
+            'title' => 'nayed.io'
         ]);
         $this->visit('/')
-             ->see('google.fr');
+             ->see('nayed.io');
     }
 }

@@ -9,8 +9,8 @@ class SeederTest extends TestCase
     public function testLinksTable()
     {
         factory(App\Link::class)->create([
-            'title' => 'google.fr'
+            'title' => 'nayed.io'
         ]);
-        $this->seeInDatabase('links', ['title' => 'google.fr']);
+        $this->seeInDatabase('links', ['title' => 'nayed.io']);
     }
 }
