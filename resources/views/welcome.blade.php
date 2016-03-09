@@ -9,6 +9,10 @@
 
                 <div class="panel-body">
                     Your Application's Landing Page.
+
+                    @foreach ($links as $link)
+                        <li>{{ $link->title }}</li>
+                    @endforeach
                 </div>
             </div>
         </div>
