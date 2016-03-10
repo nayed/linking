@@ -14,4 +14,10 @@ class LinkTest extends TestCase
         $this->visit('/')
              ->see('nayed.io');
     }
+
+    public function testWeSeeLinksForm()
+    {
+        $this->visit('/submit')
+             ->see('Submit a link');
+    }
 }

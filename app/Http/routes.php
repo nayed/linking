@@ -16,6 +16,10 @@ Route::get('/', function () {
     return view('welcome', compact('links'));
 });
 
+Route::get('/submit', function() {
+    return view('submit');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
