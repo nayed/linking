@@ -1,38 +1,30 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Routes File
-|--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+use Illuminate\Http\Request;
 
-Route::get('/', function () {
-    $links = \App\Link::all();
-    return view('welcome', compact('links'));
-});
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/', function () {
+        $links = \App\Link::all();
+        return view('welcome', compact('links'));
+    });
 
-Route::get('/submit', function() {
-    return view('submit');
-});
+    Route::get('/submit', function() {
+        return view('submit');
+    });
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
+    Route::post('/submit', function(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|max:255',
+            'url' => 'required|max:255',
+            'description' => 'required|max:255'
+        ]);
 
-Route::group(['middleware' => ['web']], function () {
-    //
+        if ($validator->fails()) {
+            return back()
+                ->withInput()
+                ->withErrors($validator);
+        }
+    });
 });
 
 Route::group(['middleware' => 'web'], function () {

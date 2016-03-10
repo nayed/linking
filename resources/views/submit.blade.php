@@ -4,6 +4,16 @@
     <div class="container">
         <div class="row">
             <h1>Submit a link</h1>
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <strong>Whoops! Something went wrong!</strong>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="/submit" method="post">
                 {!! csrf_field() !!}
                 <div class="form-group">
