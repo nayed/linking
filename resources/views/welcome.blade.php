@@ -9,9 +9,8 @@
 
                 <div class="panel-body">
                     Your Application's Landing Page.
-
                     @foreach ($links as $link)
-                        <li>{{ $link->title }}</li>
+                        <li><a href="{{ $link->url }}" target="_blank">{{ $link->title }}</a></li>
                     @endforeach
                 </div>
             </div>
