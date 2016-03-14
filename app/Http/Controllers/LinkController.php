@@ -15,12 +15,11 @@ class LinkController extends Controller
     }
     public function show()
     {
-        return view('submit');
+        return \Auth::check() ? view('submit') : redirect('/');
     }
 
     public function create(Request $request)
     {
-        //dd($request);
         $validator = \Validator::make($request->all(), [
             'title' => 'required|max:255',
             'url' => 'required|max:255',
